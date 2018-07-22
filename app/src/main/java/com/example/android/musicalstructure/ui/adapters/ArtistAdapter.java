@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.example.android.musicalstructure.R;
-import com.example.android.musicalstructure.ui.models.Album;
+import com.example.android.musicalstructure.ui.models.Artist;
 
 import java.util.List;
 
-public class AlbumAdapter extends ArrayAdapter<Album> {
+public class ArtistAdapter extends ArrayAdapter<Artist> {
 
-    public AlbumAdapter(@NonNull Context context, int resource, @NonNull List<Album> albums) {
-        super(context, resource, albums);
+    public ArtistAdapter(@NonNull Context context, int resource, @NonNull List<Artist> artists) {
+        super(context, resource, artists);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class AlbumAdapter extends ArrayAdapter<Album> {
     }
 
     @Override
-    public Album getItem(int position) {
+    public Artist getItem(int position) {
         return null;
     }
 
@@ -35,14 +35,10 @@ public class AlbumAdapter extends ArrayAdapter<Album> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View albumGridView = convertView;
-        if (albumGridView == null) {
-            albumGridView = LayoutInflater.from(getContext()).inflate(R.layout.album_item, parent, false);
+        View artistListView = convertView;
+        if (artistListView == null) {
+            artistListView = LayoutInflater.from(getContext()).inflate(R.layout.artist_item, parent, false);
         }
         return null;
-
-
     }
-
-
 }
