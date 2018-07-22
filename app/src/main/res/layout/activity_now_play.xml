@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_play"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        android:layout_weight="4">
+
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:alpha="0.75"
+            android:contentDescription="@string/backgroundImage"
+            android:scaleType="centerCrop"
+            tools:src="" />
+
+        <ImageView
+            android:id="@+id/artist"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="false"
+            android:alpha="0.75"
+            android:contentDescription="@string/artistImage"
+            tools:src="@drawable/nba" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/artist"
+            android:layout_centerHorizontal="true"
+            tools:text="drftgyhudjikolsp;" />
+
+
+        <!--<ListView-->
+        <!--android:id="@+id/list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/lightPrimaryColor"-->
+        <!--android:paddingBottom="@dimen/listTopBottomPadding"-->
+        <!--android:paddingTop="@dimen/listTopBottomPadding"-->
+        <!--tools:listitem="@layout/song_item" />-->
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        android:layout_weight="1"
+        android:paddingBottom="@dimen/listTopBottomPadding"
+        android:paddingEnd="@dimen/itemTextPadding"
+        android:paddingStart="@dimen/itemTextPadding"
+        android:paddingTop="@dimen/listTopBottomPadding">
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/listTopBottomPadding"
+            android:paddingTop="@dimen/listTopBottomPadding"
+            android:stretchColumns="1">
+
+            <TableRow tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/elapsedTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/timeZero" />
+
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/remainingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/timeZero" />
+            </TableRow>
+
+        </TableLayout>
+
+        <ImageView
+            android:id="@+id/randomIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tableLayout"
+            android:layout_toLeftOf="@id/previousIcon"
+            android:layout_toStartOf="@id/previousIcon"
+            android:contentDescription="@string/shuffle"
+            android:src="@drawable/ic_shuffle" />
+
+        <ImageView
+            android:id="@+id/previousIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tableLayout"
+            android:layout_toLeftOf="@id/playStopIcon"
+            android:layout_toStartOf="@id/playStopIcon"
+            android:contentDescription="@string/previous"
+            android:src="@drawable/ic_skip_previous" />
+
+        <ImageView
+            android:id="@+id/playStopIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tableLayout"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/play"
+            android:src="@drawable/ic_play_circle_filled" />
+
+        <ImageView
+            android:id="@+id/nextIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tableLayout"
+            android:layout_toEndOf="@id/playStopIcon"
+            android:layout_toRightOf="@id/playStopIcon"
+            android:contentDescription="@string/next"
+            android:src="@drawable/ic_skip_next" />
+
+        <ImageView
+            android:id="@+id/replayIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tableLayout"
+            android:layout_toEndOf="@id/nextIcon"
+            android:layout_toRightOf="@id/nextIcon"
+            android:contentDescription="@string/replay"
+            android:src="@drawable/ic_replay" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
