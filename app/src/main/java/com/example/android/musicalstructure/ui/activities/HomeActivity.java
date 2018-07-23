@@ -52,13 +52,16 @@ public class HomeActivity extends AppCompatActivity implements ArtistsFragment.O
     }
 
 
+
+
+
     @Override
-    public void onArtistSelected() {
+    public void onAlbumSelected() {
 
     }
 
     @Override
-    public void onAlbumSelected() {
+    public void onArtistSelected() {
 
     }
 }

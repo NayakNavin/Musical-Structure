@@ -91,22 +91,27 @@
         </TableLayout>
 
         <ImageView
-            android:id="@+id/randomIcon"
+            android:id="@+id/replayIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_below="@id/tableLayout"
-            android:layout_toLeftOf="@id/previousIcon"
-            android:layout_toStartOf="@id/previousIcon"
-            android:contentDescription="@string/shuffle"
-            android:src="@drawable/ic_shuffle" />
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+
+            android:contentDescription="@string/replay"
+            android:src="@drawable/ic_replay" />
 
         <ImageView
             android:id="@+id/previousIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
-            android:layout_toLeftOf="@id/playStopIcon"
-            android:layout_toStartOf="@id/playStopIcon"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/replayIcon"
+            android:layout_toRightOf="@id/replayIcon"
             android:contentDescription="@string/previous"
             android:src="@drawable/ic_skip_previous" />
 
@@ -116,6 +121,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/previousIcon"
+            android:layout_toRightOf="@id/previousIcon"
             android:contentDescription="@string/play"
             android:src="@drawable/ic_play_circle_filled" />
 
@@ -124,20 +133,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/playStopIcon"
             android:layout_toRightOf="@id/playStopIcon"
             android:contentDescription="@string/next"
             android:src="@drawable/ic_skip_next" />
 
         <ImageView
-            android:id="@+id/replayIcon"
+            android:id="@+id/shuffleIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/nextIcon"
             android:layout_toRightOf="@id/nextIcon"
-            android:contentDescription="@string/replay"
-            android:src="@drawable/ic_replay" />
+            android:contentDescription="@string/shuffle"
+            android:src="@drawable/ic_shuffle" />
+
+        <ImageView
+            android:id="@+id/queueIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/tableLayout"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/shuffleIcon"
+            android:layout_toRightOf="@id/shuffleIcon"
+            android:contentDescription="@string/queue"
+            android:src="@drawable/ic_dehaze" />
 
     </RelativeLayout>
 
