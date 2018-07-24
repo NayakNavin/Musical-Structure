@@ -6,27 +6,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.android.musicalstructure.R;
 import com.example.android.musicalstructure.ui.models.Artist;
+import com.example.android.musicalstructure.ui.sample.SampleContent;
 
 import java.util.List;
 
 public class ArtistAdapter extends ArrayAdapter<Artist> {
 
-    public ArtistAdapter(@NonNull Context context, int resource, @NonNull List<Artist> artists) {
-        super(context, resource, artists);
+    public ArtistAdapter(@NonNull Context context, @NonNull List<Artist> artists) {
+        super(context, 0, artists);
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return SampleContent.ITEMS_ARTISTS.size();
     }
 
-    @Override
-    public Artist getItem(int position) {
-        return null;
-    }
+//    @Override
+//    public Artist getItem(int position) {
+//        return null;
+//    }
 
     @Override
     public long getItemId(int position) {
@@ -39,6 +42,21 @@ public class ArtistAdapter extends ArrayAdapter<Artist> {
         if (artistListView == null) {
             artistListView = LayoutInflater.from(getContext()).inflate(R.layout.artist_item, parent, false);
         }
-        return null;
+
+
+        Artist currentArtist = getItem(position);
+
+        if (currentArtist != null) {
+            ImageView artistImageView = artistListView.findViewById(R.id.artist_img);
+            artistImageView.setImageResource(getContext().getResources().getIdentifier(
+                    currentArtist.getPhoto(), "drawable", getContext().getPackageName()));
+
+            TextView artistTextView = artistListView.findViewById(R.id.artist_name);
+            artistTextView.setText(currentArtist.getName());
+        }
+
+        return artistListView;
+
+
     }
 }

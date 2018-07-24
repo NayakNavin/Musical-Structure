@@ -18,9 +18,9 @@ public class SampleContent {
 
     static {
 
-        Artist aboveAndBeyond = new Artist("Above &amp; Beyond", "above_and_beyond");
+        Artist aboveAndBeyond = new Artist("Above & Beyond", "above_and_beyond");
         Artist ilanBluestone = new Artist("Ilan Bluestone", "ilan_bluestone");
-        Artist superEightAndTab = new Artist("Super8 &amp; Tab", "super8_and_tab");
+        Artist superEightAndTab = new Artist("Super8 & Tab", "super8_and_tab");
 
 
         Album commonGround = new Album("Common Ground", aboveAndBeyond, "common_ground");

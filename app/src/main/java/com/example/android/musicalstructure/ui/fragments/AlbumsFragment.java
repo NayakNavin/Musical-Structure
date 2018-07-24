@@ -1,14 +1,18 @@
 package com.example.android.musicalstructure.ui.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 
 import com.example.android.musicalstructure.R;
+import com.example.android.musicalstructure.ui.adapters.AlbumAdapter;
+import com.example.android.musicalstructure.ui.models.Album;
+import com.example.android.musicalstructure.ui.sample.SampleContent;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,18 +42,21 @@ public class AlbumsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     //     * @param param1 Parameter 1.
+     //     * @param param2 Parameter 2.
      * @return A new instance of fragment AlbumsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AlbumsFragment newInstance(String param1, String param2) {
-        AlbumsFragment fragment = new AlbumsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+//    public static AlbumsFragment newInstance(String param1, String param2) {
+    public static AlbumsFragment newInstance() {
+//        AlbumsFragment fragment = new AlbumsFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+        return new AlbumsFragment();
+
     }
 
     @Override
@@ -65,17 +72,39 @@ public class AlbumsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_albums, container, false);
+        View view = inflater.inflate(R.layout.fragment_grid, container, false);
+        // Create an {@link ArtistAdapter}, whose data source is a list of {@link Artist}s. The
+        // adapter knows how to create list items for each item in the list.
+        AlbumAdapter adapter = new AlbumAdapter(view.getContext(), SampleContent.ITEMS_ALBUMS);
 
+        // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
+        // There should be a {@link ListView} with the view ID called list, which is declared in the
+        // activity_numbers.xml layout file.
+        GridView gridView = view.findViewById(R.id.albumGrid);
+
+        // Make the {@link ListView} use the {@link ArtistAdapter} we created above, so that the
+        // {@link ListView} will display list items for each {@link Artist} in the list.
+        gridView.setAdapter(adapter);
+
+        // Pass data to the Activity
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Album selectedAlbum = SampleContent.ITEMS_ALBUMS.get(position);
+                mListener.onAlbumSelected(selectedAlbum);
+            }
+        });
+
+        return view;
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onAlbumSelected();
-        }
-    }
+//    // TODO: Rename method, update argument and hook method into UI event
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onAlbumSelected();
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {
@@ -106,7 +135,7 @@ public class AlbumsFragment extends Fragment {
      */
     public interface OnAlbumSelectedListener {
         // TODO: Update argument type and name
-        void onAlbumSelected();
+        void onAlbumSelected(Album album);
     }
 
 }

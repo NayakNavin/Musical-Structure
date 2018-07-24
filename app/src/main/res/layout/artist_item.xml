@@ -6,21 +6,25 @@
 
     <ImageView
         android:id="@+id/artist_img"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:contentDescription="artist_image"
+        android:adjustViewBounds="true"
 
+        android:scaleType="fitCenter"
         android:src="@drawable/abgt_artist" />
 
     <TextView
+        android:id="@+id/artist_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
+        android:textSize="18sp"
         android:layout_toEndOf="@+id/artist_img"
         android:layout_toRightOf="@+id/artist_img"
         tools:text="Above &amp; Beyond" />

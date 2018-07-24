@@ -24,9 +24,9 @@ public class HomePageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new AlbumsFragment();
+                return AlbumsFragment.newInstance();
             case 1:
-                return new ArtistsFragment();
+                return ArtistsFragment.newInstance();
         }
         return null;
     }

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activities.HomeActivity">
+        <activity
+            android:name=".ui.activities.HomeActivity"
+            android:parentActivityName=".ui.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +22,7 @@
             android:name=".ui.activities.NowPlayingActivity"
             android:label="@string/Play" />
         <activity
-            android:name=".ui.activities.AboutActivity"
+            android:name=".ui.activities.QueueActivity"
             android:label="@string/about" />
     </application>
 

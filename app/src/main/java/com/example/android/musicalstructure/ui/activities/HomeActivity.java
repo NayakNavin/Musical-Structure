@@ -1,5 +1,6 @@
 package com.example.android.musicalstructure.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -10,6 +11,8 @@ import com.example.android.musicalstructure.R;
 import com.example.android.musicalstructure.ui.adapters.HomePageAdapter;
 import com.example.android.musicalstructure.ui.fragments.AlbumsFragment;
 import com.example.android.musicalstructure.ui.fragments.ArtistsFragment;
+import com.example.android.musicalstructure.ui.models.Album;
+import com.example.android.musicalstructure.ui.models.Artist;
 
 public class HomeActivity extends AppCompatActivity implements ArtistsFragment.OnArtistSelectedListener, AlbumsFragment.OnAlbumSelectedListener {
 
@@ -35,10 +38,10 @@ public class HomeActivity extends AppCompatActivity implements ArtistsFragment.O
         homePageAdapter = new HomePageAdapter(getSupportFragmentManager());
         homePageAdapter.setPageTitles(initPagesTitles());
 
-        viewPager = (ViewPager) findViewById(R.id.container);
+        viewPager = findViewById(R.id.container);
         viewPager.setAdapter(homePageAdapter);
 
-        tabLayout = (TabLayout) findViewById(R.id.homePageTabs);
+        tabLayout = findViewById(R.id.homePageTabs);
         tabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         tabLayout.setTabTextColors(getResources().getColor(R.color.white), getResources().getColor(R.color.colorAccent));
         tabLayout.setupWithViewPager(viewPager);
@@ -52,16 +55,18 @@ public class HomeActivity extends AppCompatActivity implements ArtistsFragment.O
     }
 
 
-
-
-
     @Override
-    public void onAlbumSelected() {
+    public void onAlbumSelected(Album album) {
+        Intent playActivity = new Intent(HomeActivity.this, NowPlayingActivity.class);
+        playActivity.putExtra(SELECTED_ALBUM, album);
+        startActivity(playActivity);
 
     }
 
-    @Override
-    public void onArtistSelected() {
+    public void onArtistSelected(Artist artist) {
+        Intent playActivity = new Intent(HomeActivity.this, NowPlayingActivity.class);
+        playActivity.putExtra(SELECTED_ARTIST, artist);
+        startActivity(playActivity);
 
     }
 }
