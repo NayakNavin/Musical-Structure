@@ -92,16 +92,16 @@ public class NowPlayingActivity extends AppCompatActivity {
 
 
         // Get all the necessary views
-        elapsedTimeTextView = findViewById(R.id.elapsedTime);
-        remainingTimeTextView = findViewById(R.id.remainingTime);
-        coverImageView = findViewById(R.id.cover);
-        artistImageView = findViewById(R.id.artist);
-        playStopImageView = findViewById(R.id.playStopIcon);
-        seekBar = findViewById(R.id.seekBar);
-        nextIconImageView = findViewById(R.id.nextIcon);
-        previousIconImageView = findViewById(R.id.previousIcon);
-        replayImageView = findViewById(R.id.replayIcon);
-        shuffleImageView = findViewById(R.id.shuffleIcon);
+        elapsedTimeTextView = (TextView) findViewById(R.id.elapsedTime);
+        remainingTimeTextView = (TextView) findViewById(R.id.remainingTime);
+        coverImageView = (ImageView) findViewById(R.id.cover);
+        artistImageView = (ImageView) findViewById(R.id.artist);
+        playStopImageView = (ImageView) findViewById(R.id.playStopIcon);
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        nextIconImageView = (ImageView) findViewById(R.id.nextIcon);
+        previousIconImageView = (ImageView) findViewById(R.id.previousIcon);
+        replayImageView = (ImageView) findViewById(R.id.replayIcon);
+        shuffleImageView = (ImageView) findViewById(R.id.shuffleIcon);
 
 
         // Get the information from the intent
@@ -151,7 +151,7 @@ public class NowPlayingActivity extends AppCompatActivity {
         }
 
         // Fill the list of songs
-        listListView = findViewById(R.id.list);
+        listListView = (ListView) findViewById(R.id.list);
         SongAdapter songAdapter = new SongAdapter(this, songs);
         listListView.setAdapter(songAdapter);
         listListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
@@ -291,9 +291,13 @@ public class NowPlayingActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
-
-            finish();
+            case android.R.id.home:
+                finish();
+                break;
+            case R.drawable.ic_dehaze:
+                Intent intent = new Intent(NowPlayingActivity.this, QueueActivity.class);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
