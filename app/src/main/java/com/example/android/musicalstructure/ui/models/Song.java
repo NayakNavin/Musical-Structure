@@ -14,14 +14,6 @@ public class Song implements Serializable {
         this.mediaFile = null;
     }
 
-    public Song(String name, int duration, String mediaFile) {
-
-        this.name = name;
-        this.duration = duration;
-        this.mediaFile = mediaFile;
-
-    }
-
     public String getName() {
         return name;
     }
@@ -37,5 +29,4 @@ public class Song implements Serializable {
     public String getMediaFile() {
         return mediaFile;
     }
-
 }

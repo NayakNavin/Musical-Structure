@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
@@ -30,23 +29,23 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
-
 public class NowPlayingActivity extends AppCompatActivity {
     private ActionBar actionBar;
-
     private static final String REMAINING_TIME = "REMAINING_TIME";
     private static final String IS_PLAYING = "IS_PLAYING";
     private static final String IS_PLAYING_RANDOM = "IS_PLAYING_RANDOM";
     private static final String CURRENT_SONG_POS = "CURRENT_SONG_POS";
+
     // Interval to refresh the countDownTimer in milliseconds
     private final long TIMER_INTERVAL = 1000;
     private TextView elapsedTimeTextView;
     private TextView remainingTimeTextView;
+    private CountDownTimer countDownTimer;
+
     private ImageView coverImageView;
-    private ImageView artistImageView;
     private ListView listListView;
-    private ImageView playStopImageView;
     private SeekBar seekBar;
+    private ImageView playStopImageView;
     private ImageView nextIconImageView;
     private ImageView previousIconImageView;
     private ImageView replayImageView;
@@ -62,47 +61,26 @@ public class NowPlayingActivity extends AppCompatActivity {
     private Random random;
     private MediaPlayer mediaPlayer;
 
-    private CountDownTimer countDownTimer;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_now_play);
 
-
         actionBar = getSupportActionBar();
-
         actionBar.setTitle("Now Playing");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-
-        actionBar.setDisplayOptions(actionBar.getDisplayOptions()
-                | ActionBar.DISPLAY_SHOW_CUSTOM);
-        ImageView imageView = new ImageView(actionBar.getThemedContext());
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.ic_dehaze);
-        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.RIGHT
-                | Gravity.CENTER_VERTICAL);
-        layoutParams.rightMargin = 40;
-        imageView.setLayoutParams(layoutParams);
-        actionBar.setCustomView(imageView);
-
-
         // Get all the necessary views
-        elapsedTimeTextView = (TextView) findViewById(R.id.elapsedTime);
-        remainingTimeTextView = (TextView) findViewById(R.id.remainingTime);
-        coverImageView = (ImageView) findViewById(R.id.cover);
-        artistImageView = (ImageView) findViewById(R.id.artist);
-        playStopImageView = (ImageView) findViewById(R.id.playStopIcon);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        nextIconImageView = (ImageView) findViewById(R.id.nextIcon);
-        previousIconImageView = (ImageView) findViewById(R.id.previousIcon);
-        replayImageView = (ImageView) findViewById(R.id.replayIcon);
-        shuffleImageView = (ImageView) findViewById(R.id.shuffleIcon);
-
+        elapsedTimeTextView = findViewById(R.id.elapsedTime);
+        remainingTimeTextView = findViewById(R.id.remainingTime);
+        coverImageView = findViewById(R.id.cover);
+        playStopImageView = findViewById(R.id.playStopIcon);
+        seekBar = findViewById(R.id.seekBar);
+        nextIconImageView = findViewById(R.id.nextIcon);
+        previousIconImageView = findViewById(R.id.previousIcon);
+        replayImageView = findViewById(R.id.replayIcon);
+        shuffleImageView = findViewById(R.id.shuffleIcon);
 
         // Get the information from the intent
         Intent intent = getIntent();
@@ -117,45 +95,30 @@ public class NowPlayingActivity extends AppCompatActivity {
         random = new Random();
         mediaPlayer = null;
 
-
         int currentSongPos = 0;
         if (savedInstanceState != null) {
             currentSongPos = savedInstanceState.getInt(CURRENT_SONG_POS);
         }
 
-
         // Get all the songs to be played, depending if we have an album or an artist
         if (selectedAlbum != null) {
             songs = selectedAlbum.getSongs();
-
             setTitle(selectedAlbum.getName());
-
-            coverImageView.setImageResource(getResources().getIdentifier(
-                    selectedAlbum.getCover(), "drawable", getPackageName()));
-//            artistImageView.setImageResource(getResources().getIdentifier(
-//                    selectedArtist.getPhoto(), "drawable", getPackageName()));
-
+            coverImageView.setImageResource(getResources().getIdentifier(selectedAlbum.getCover(), "drawable", getPackageName()));
         } else if (selectedArtist != null) {
             songs = new ArrayList<>();
-
             for (Album album : selectedArtist.getAlbums()) {
                 songs.addAll(album.getSongs());
             }
-
             setTitle(selectedArtist.getName());
-
-            coverImageView.setImageResource(getResources().getIdentifier(
-                    selectedArtist.getPhoto(), "drawable", getPackageName()));
-
-
+            coverImageView.setImageResource(getResources().getIdentifier(selectedArtist.getPhoto(), "drawable", getPackageName()));
         }
 
         // Fill the list of songs
-        listListView = (ListView) findViewById(R.id.list);
+        listListView = findViewById(R.id.list);
         SongAdapter songAdapter = new SongAdapter(this, songs);
         listListView.setAdapter(songAdapter);
         listListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-
         selectSong((Song) listListView.getItemAtPosition(currentSongPos));
 
         // Set the listeners
@@ -179,7 +142,6 @@ public class NowPlayingActivity extends AppCompatActivity {
             }
         });
 
-
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             /**
              * Notification that the progress level has changed. Clients can use the fromUser parameter
@@ -195,7 +157,6 @@ public class NowPlayingActivity extends AppCompatActivity {
                 remainingTime = (currentSong.getDuration() - seekBar.getProgress())
                         * TIMER_INTERVAL;
                 refreshTime();
-
             }
 
             /**
@@ -229,7 +190,6 @@ public class NowPlayingActivity extends AppCompatActivity {
                         mediaPlayer.seekTo(seekBar.getProgress() * 1000);
                     }
                 }
-
                 if (isPlaying) {
                     countDownTimer.start();
                 }
@@ -275,28 +235,20 @@ public class NowPlayingActivity extends AppCompatActivity {
 
             isPlayingRandom = savedInstanceState.getBoolean(IS_PLAYING_RANDOM);
             if (isPlayingRandom) {
-                shuffleImageView.setImageResource(R.drawable.ic_shuffle);
+                shuffleImageView.setImageResource(R.drawable.ic_dehaze);
             }
-
             if (savedInstanceState.getBoolean(IS_PLAYING)) {
                 // this will update isPlaying to true
                 playPause();
             }
         }
-
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                break;
-            case R.drawable.ic_dehaze:
-                Intent intent = new Intent(NowPlayingActivity.this, QueueActivity.class);
-                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -337,7 +289,6 @@ public class NowPlayingActivity extends AppCompatActivity {
             mediaPlayer.release();
             mediaPlayer = null;
         }
-
         return super.getSupportParentActivityIntent();
     }
 
@@ -350,12 +301,10 @@ public class NowPlayingActivity extends AppCompatActivity {
     private CountDownTimer initCountDownTimer(final long duration) {
 
         remainingTime = duration;
-
         return new CountDownTimer(duration, TIMER_INTERVAL) {
 
             public void onTick(long millisUntilFinished) {
                 remainingTime = millisUntilFinished;
-
                 refreshTime();
 
                 // Update the seekBar
@@ -396,11 +345,9 @@ public class NowPlayingActivity extends AppCompatActivity {
         if (currentSong.getMediaFile() != null) {
             resIdMedia = getResources().getIdentifier(currentSong.getMediaFile(), "raw", getPackageName());
         }
-
         if (resIdMedia == 0) {
             Toast.makeText(this, R.string.noFile, Toast.LENGTH_SHORT).show();
         }
-
         countDownTimer.cancel();
 
         // initialization of the elapsed time of the current song
@@ -419,7 +366,6 @@ public class NowPlayingActivity extends AppCompatActivity {
         if (resIdMedia != 0) {
             mediaPlayer = MediaPlayer.create(this, resIdMedia);
         }
-
         if (isPlaying) {
             countDownTimer.start();
             if (mediaPlayer != null) {
@@ -447,7 +393,6 @@ public class NowPlayingActivity extends AppCompatActivity {
             }
             countDownTimer.start();
         }
-
         isPlaying = !isPlaying;
     }
 
@@ -473,9 +418,7 @@ public class NowPlayingActivity extends AppCompatActivity {
                 listListView.setSelectionAfterHeaderView();
             }
         }
-
         selectSong((Song) listListView.getItemAtPosition(currentPosition));
-
         listListView.getChildAt(currentPosition - firstDisplayedPosition).setSelected(true);
         listListView.smoothScrollToPosition(currentPosition + 1 - firstDisplayedPosition);
     }
@@ -483,9 +426,7 @@ public class NowPlayingActivity extends AppCompatActivity {
     /**
      * Select the previous song
      */
-
-
-    public void previousSong() {
+    private void previousSong() {
         int currentPosition = songs.indexOf(currentSong);
 
         // Deselect the current item
@@ -504,7 +445,6 @@ public class NowPlayingActivity extends AppCompatActivity {
                 firstDisplayedPosition = listListView.getFirstVisiblePosition();
             }
         }
-
         selectSong((Song) listListView.getItemAtPosition(currentPosition));
 
         // Trick because when going too the last element of the list, the View item doesn't exists
@@ -513,5 +453,4 @@ public class NowPlayingActivity extends AppCompatActivity {
             listListView.smoothScrollToPosition(currentPosition - 1 - firstDisplayedPosition);
         }
     }
-
 }

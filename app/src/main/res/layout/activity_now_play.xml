@@ -20,33 +20,15 @@
             android:alpha="0.75"
             android:contentDescription="@string/backgroundImage"
             android:scaleType="centerCrop"
-            tools:src="" />
+            tools:src="@drawable/abgt" />
 
-        <ImageView
-            android:id="@+id/artist"
-            android:layout_width="wrap_content"
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:adjustViewBounds="false"
-            android:alpha="0.75"
-            android:contentDescription="@string/artistImage" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/artist"
-            android:layout_centerHorizontal="true"
-            tools:text="drftgyhudjikolsp;" />
-
-
-        <!--<ListView-->
-        <!--android:id="@+id/list"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@color/lightPrimaryColor"-->
-        <!--android:paddingBottom="@dimen/listTopBottomPadding"-->
-        <!--android:paddingTop="@dimen/listTopBottomPadding"-->
-        <!--tools:listitem="@layout/song_item" />-->
+            android:paddingBottom="@dimen/list_padding_8dp"
+            android:paddingTop="@dimen/list_padding_8dp"
+            tools:listitem="@layout/fragment_album" />
 
     </RelativeLayout>
 
@@ -54,17 +36,17 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
         android:layout_weight="1"
-        android:paddingBottom="@dimen/listTopBottomPadding"
-        android:paddingEnd="@dimen/itemTextPadding"
-        android:paddingStart="@dimen/itemTextPadding"
-        android:paddingTop="@dimen/listTopBottomPadding">
+        android:paddingBottom="@dimen/padding_8dp"
+        android:paddingEnd="@dimen/padding_16dp"
+        android:paddingStart="@dimen/padding_16dp"
+        android:paddingTop="@dimen/padding_8dp">
 
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/listTopBottomPadding"
-            android:paddingTop="@dimen/listTopBottomPadding"
+            android:paddingBottom="@dimen/padding_8dp"
+            android:paddingTop="@dimen/padding_8dp"
             android:stretchColumns="1">
 
             <TableRow tools:ignore="UselessParent">
@@ -94,11 +76,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
+            android:layout_marginEnd="@dimen/margin_24dp"
+            android:layout_marginRight="@dimen/margin_24dp"
+            android:layout_marginTop="@dimen/margin_8dp"
             android:layout_toLeftOf="@id/previousIcon"
             android:layout_toStartOf="@id/previousIcon"
-
             android:contentDescription="@string/replay"
             android:src="@drawable/ic_replay" />
 
@@ -107,8 +89,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
+            android:layout_marginEnd="@dimen/margin_32dp"
+            android:layout_marginRight="@dimen/margin_32dp"
+            android:layout_marginTop="@dimen/margin_8dp"
             android:layout_toLeftOf="@id/playStopIcon"
             android:layout_toStartOf="@id/playStopIcon"
             android:contentDescription="@string/previous"
@@ -120,8 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
             android:layout_centerHorizontal="true"
-
-
+            android:layout_marginTop="@dimen/margin_8dp"
             android:contentDescription="@string/play"
             android:src="@drawable/ic_play_circle_filled" />
 
@@ -130,8 +112,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
-            android:layout_marginLeft="32dp"
-            android:layout_marginStart="32dp"
+            android:layout_marginLeft="@dimen/margin_32dp"
+            android:layout_marginStart="@dimen/margin_32dp"
+            android:layout_marginTop="@dimen/margin_8dp"
             android:layout_toEndOf="@id/playStopIcon"
             android:layout_toRightOf="@id/playStopIcon"
             android:contentDescription="@string/next"
@@ -142,15 +125,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tableLayout"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginLeft="@dimen/margin_24dp"
+            android:layout_marginStart="@dimen/margin_24dp"
+            android:layout_marginTop="@dimen/margin_8dp"
             android:layout_toEndOf="@id/nextIcon"
             android:layout_toRightOf="@id/nextIcon"
             android:contentDescription="@string/shuffle"
             android:src="@drawable/ic_shuffle" />
 
-
     </RelativeLayout>
-
 
 </LinearLayout>

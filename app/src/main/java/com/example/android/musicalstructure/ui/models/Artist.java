@@ -31,7 +31,6 @@ public class Artist implements Serializable {
         return photo;
     }
 
-
     public ArrayList<Album> getAlbums() {
         return albums;
     }
@@ -39,8 +38,4 @@ public class Artist implements Serializable {
     public void setAlbums(ArrayList<Album> albums) {
         this.albums = albums;
     }
-
-
 }
-
-

@@ -26,13 +26,14 @@ public class HomeActivity extends AppCompatActivity implements ArtistsFragment.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
 
         // To remove the shadow
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setElevation(0);
         }
+        actionBar.setDisplayHomeAsUpEnabled(false);
 
         // Create the tabs
         homePageAdapter = new HomePageAdapter(getSupportFragmentManager());
@@ -54,19 +55,16 @@ public class HomeActivity extends AppCompatActivity implements ArtistsFragment.O
         return pageTitles;
     }
 
-
     @Override
     public void onAlbumSelected(Album album) {
         Intent playActivity = new Intent(HomeActivity.this, NowPlayingActivity.class);
         playActivity.putExtra(SELECTED_ALBUM, album);
         startActivity(playActivity);
-
     }
 
     public void onArtistSelected(Artist artist) {
         Intent playActivity = new Intent(HomeActivity.this, NowPlayingActivity.class);
         playActivity.putExtra(SELECTED_ARTIST, artist);
         startActivity(playActivity);
-
     }
 }

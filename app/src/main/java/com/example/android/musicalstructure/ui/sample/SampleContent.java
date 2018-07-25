@@ -11,10 +11,7 @@ public class SampleContent {
 
     public static final List<Album> ITEMS_ALBUMS = new ArrayList<>();
     public static final List<Artist> ITEMS_ARTISTS = new ArrayList<>();
-
-
     private static final int COUNT = 1;
-
 
     static {
 
@@ -37,7 +34,6 @@ public class SampleContent {
         commonGround.addSong(new Song("Bittersweet & Blue (feat. Richard Bedford)", 326));
         commonGround.addSong(new Song("Always (feat. Zoë Johnston)", 250));
         commonGround.addSong(new Song("Common Ground", 212));
-
 
         Album scars = new Album("Scars", ilanBluestone, "scars_ilan");
         scars.addSong(new Song("Scars (feat. Giuseppe De Luca)", 295));
@@ -70,17 +66,14 @@ public class SampleContent {
         empire.addSong(new Song("Free Love (feat. Jan Burton)", 245));
         empire.addSong(new Song("Helektra (Bonus Track)", 582));
 
-
         aboveAndBeyond.addAlbum(commonGround);
         ilanBluestone.addAlbum(scars);
         superEightAndTab.addAlbum(empire);
-
 
         for (int i = 1; i <= COUNT; i++) {
             addItem(commonGround, aboveAndBeyond);
             addItem(scars, ilanBluestone);
             addItem(empire, superEightAndTab);
-
         }
     }
 

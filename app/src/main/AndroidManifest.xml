@@ -21,9 +21,6 @@
         <activity
             android:name=".ui.activities.NowPlayingActivity"
             android:label="@string/Play" />
-        <activity
-            android:name=".ui.activities.QueueActivity"
-            android:label="@string/about" />
     </application>
 
 </manifest>

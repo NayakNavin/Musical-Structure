@@ -32,10 +32,6 @@ public class Album implements Serializable {
         return artist;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-    }
-
     public ArrayList<Song> getSongs() {
         return songs;
     }
@@ -47,6 +43,4 @@ public class Album implements Serializable {
     public void setCover(String cover) {
         this.cover = cover;
     }
-
-
 }

@@ -41,22 +41,15 @@ public class AlbumsFragment extends Fragment {
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
+     * <p>
+     * //     * @param param1 Parameter 1.
+     * //     * @param param2 Parameter 2.
      *
-     //     * @param param1 Parameter 1.
-     //     * @param param2 Parameter 2.
      * @return A new instance of fragment AlbumsFragment.
      */
     // TODO: Rename and change types and number of parameters
-//    public static AlbumsFragment newInstance(String param1, String param2) {
     public static AlbumsFragment newInstance() {
-//        AlbumsFragment fragment = new AlbumsFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
         return new AlbumsFragment();
-
     }
 
     @Override
@@ -73,17 +66,18 @@ public class AlbumsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_grid, container, false);
-        // Create an {@link ArtistAdapter}, whose data source is a list of {@link Artist}s. The
-        // adapter knows how to create list items for each item in the list.
+
+        // Create an {@link AlbumAdapter}, whose data source is a grid of {@link Album}s. The
+        // adapter knows how to create grid items for each item in the grid.
         AlbumAdapter adapter = new AlbumAdapter(view.getContext(), SampleContent.ITEMS_ALBUMS);
 
-        // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
-        // There should be a {@link ListView} with the view ID called list, which is declared in the
-        // activity_numbers.xml layout file.
+        // Find the {@link GridView} object in the view hierarchy of the {@link Activity}.
+        // There should be a {@link GridView} with the view ID called albumGrid, which is declared in the
+        // fragment_grid.xml layout file.
         GridView gridView = view.findViewById(R.id.albumGrid);
 
-        // Make the {@link ListView} use the {@link ArtistAdapter} we created above, so that the
-        // {@link ListView} will display list items for each {@link Artist} in the list.
+        // Make the {@link GridView} use the {@link AlbumAdapter} we created above, so that the
+        // {@link GridView} will display grid items for each {@link Album} in the grid.
         gridView.setAdapter(adapter);
 
         // Pass data to the Activity
@@ -94,17 +88,9 @@ public class AlbumsFragment extends Fragment {
                 mListener.onAlbumSelected(selectedAlbum);
             }
         });
-
         return view;
-
     }
 
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onAlbumSelected();
-//        }
-//    }
 
     @Override
     public void onAttach(Context context) {
@@ -137,5 +123,4 @@ public class AlbumsFragment extends Fragment {
         // TODO: Update argument type and name
         void onAlbumSelected(Album album);
     }
-
 }

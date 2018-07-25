@@ -18,6 +18,12 @@ import java.util.List;
 
 public class AlbumAdapter extends ArrayAdapter<Album> {
 
+    /**
+     * Constructor
+     *
+     * @param context The current context.
+     * @param albums  The objects to represent in the ListView.
+     */
     public AlbumAdapter(@NonNull Context context, @NonNull List<Album> albums) {
         super(context, 0, albums);
     }
@@ -27,12 +33,6 @@ public class AlbumAdapter extends ArrayAdapter<Album> {
         return SampleContent.ITEMS_ALBUMS.size();
     }
 
-    //
-//    @Override
-//    public Album getItem(int position) {
-//        return null;
-//    }
-//
     @Override
     public long getItemId(int position) {
         return 0;
@@ -41,14 +41,13 @@ public class AlbumAdapter extends ArrayAdapter<Album> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @Nullable ViewGroup parent) {
+        // Check if the existing view is being reused, otherwise inflate the view
         View albumGridView = convertView;
         if (albumGridView == null) {
             albumGridView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_album, parent, false);
         }
 
-
         Album currentAlbum = getItem(position);
-
         if (currentAlbum != null) {
             ImageView albumImageView = albumGridView.findViewById(R.id.album_img);
             albumImageView.setImageResource(getContext().getResources().getIdentifier(
@@ -60,9 +59,6 @@ public class AlbumAdapter extends ArrayAdapter<Album> {
             TextView artistTextView = albumGridView.findViewById(R.id.artistName);
             artistTextView.setText(currentAlbum.getArtist().getName());
         }
-
         return albumGridView;
     }
-
-
 }

@@ -47,14 +47,7 @@ public class ArtistsFragment extends Fragment {
      * @return A new instance of fragment ArtistsFragment.
      */
     // TODO: Rename and change types and number of parameters
-//    public static ArtistsFragment newInstance(String param1, String param2) {
     public static ArtistsFragment newInstance() {
-//       ArtistsFragment fragment = new ArtistsFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
         return new ArtistsFragment();
     }
 
@@ -80,7 +73,7 @@ public class ArtistsFragment extends Fragment {
         // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the
         // activity_numbers.xml layout file.
-        ListView listView = view.findViewById(R.id.list);
+        ListView listView = view.findViewById(R.id.artistList);
 
         // Make the {@link ListView} use the {@link ArtistAdapter} we created above, so that the
         // {@link ListView} will display list items for each {@link Artist} in the list.
@@ -94,19 +87,10 @@ public class ArtistsFragment extends Fragment {
                 mListener.onArtistSelected(selectedArtist);
             }
         });
-
         return view;
-
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onArtistSelected();
-//        }
-//    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
