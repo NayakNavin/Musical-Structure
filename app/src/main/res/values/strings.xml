@@ -15,6 +15,6 @@
     <string name="artists">Artists</string>
     <string name="noFile">This is a concept app</string>
     <string name="artist_image">Artist Image</string>
-
-
+    <string name="repeatAlert">Repeat On</string>
+    <string name="shuffleAlert">Shuffle On</string>
 </resources>

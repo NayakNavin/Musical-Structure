@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class NowPlayingActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private static final String REMAINING_TIME = "REMAINING_TIME";
@@ -58,6 +60,7 @@ public class NowPlayingActivity extends AppCompatActivity {
     private boolean isPlaying;
     private long remainingTime;
     private boolean isPlayingRandom;
+    private boolean isPlayingRepeat;
     private Random random;
     private MediaPlayer mediaPlayer;
 
@@ -92,6 +95,7 @@ public class NowPlayingActivity extends AppCompatActivity {
         isPlaying = false;
         countDownTimer = initCountDownTimer(0);
         isPlayingRandom = false;
+        isPlayingRepeat = false;
         random = new Random();
         mediaPlayer = null;
 
@@ -213,7 +217,13 @@ public class NowPlayingActivity extends AppCompatActivity {
         replayImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectSong(currentSong);
+                if (isPlayingRepeat) {
+                    replayImageView.setImageResource(R.drawable.ic_repeat);
+                } else {
+                    replayImageView.setImageResource(R.drawable.ic_repeat_on);
+                    repeatToast();
+                }
+                isPlayingRepeat = !isPlayingRepeat;
             }
         });
 
@@ -223,7 +233,8 @@ public class NowPlayingActivity extends AppCompatActivity {
                 if (isPlayingRandom) {
                     shuffleImageView.setImageResource(R.drawable.ic_shuffle);
                 } else {
-                    shuffleImageView.setImageResource(R.drawable.ic_dehaze);
+                    shuffleImageView.setImageResource(R.drawable.ic_shuffle_on);
+                    shuffleToast();
                 }
                 isPlayingRandom = !isPlayingRandom;
             }
@@ -235,7 +246,7 @@ public class NowPlayingActivity extends AppCompatActivity {
 
             isPlayingRandom = savedInstanceState.getBoolean(IS_PLAYING_RANDOM);
             if (isPlayingRandom) {
-                shuffleImageView.setImageResource(R.drawable.ic_dehaze);
+                shuffleImageView.setImageResource(R.drawable.ic_shuffle_on);
             }
             if (savedInstanceState.getBoolean(IS_PLAYING)) {
                 // this will update isPlaying to true
@@ -310,9 +321,12 @@ public class NowPlayingActivity extends AppCompatActivity {
                 // Update the seekBar
                 seekBar.setProgress(currentSong.getDuration() - (int) (millisUntilFinished / TIMER_INTERVAL));
             }
-
             public void onFinish() {
-                nextSong();
+                if (!isPlayingRepeat) {
+                    nextSong();
+                } else {
+                    selectSong(currentSong);
+                }
             }
         };
     }
@@ -346,8 +360,9 @@ public class NowPlayingActivity extends AppCompatActivity {
             resIdMedia = getResources().getIdentifier(currentSong.getMediaFile(), "raw", getPackageName());
         }
         if (resIdMedia == 0) {
-            Toast.makeText(this, R.string.noFile, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.noFile, LENGTH_SHORT).show();
         }
+
         countDownTimer.cancel();
 
         // initialization of the elapsed time of the current song
@@ -380,13 +395,13 @@ public class NowPlayingActivity extends AppCompatActivity {
     private void playPause() {
 
         if (isPlaying) {
-            playStopImageView.setImageResource(R.drawable.ic_play_circle_filled);
+            playStopImageView.setImageResource(R.drawable.ic_play);
             countDownTimer.cancel();
             if (mediaPlayer != null) {
                 mediaPlayer.pause();
             }
         } else {
-            playStopImageView.setImageResource(R.drawable.ic_pause_circle_filled);
+            playStopImageView.setImageResource(R.drawable.ic_pause);
             countDownTimer = initCountDownTimer(remainingTime);
             if (mediaPlayer != null) {
                 mediaPlayer.start();
@@ -452,5 +467,13 @@ public class NowPlayingActivity extends AppCompatActivity {
             listListView.getChildAt(currentPosition - firstDisplayedPosition).setSelected(true);
             listListView.smoothScrollToPosition(currentPosition - 1 - firstDisplayedPosition);
         }
+    }
+
+    private void repeatToast() {
+        Toast.makeText(this, R.string.repeatAlert, Toast.LENGTH_SHORT).show();
+    }
+
+    private void shuffleToast() {
+        Toast.makeText(this, R.string.shuffleAlert, Toast.LENGTH_SHORT).show();
     }
 }

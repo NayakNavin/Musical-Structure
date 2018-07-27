@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#1d2126</color>
+    <color name="colorPrimaryDark">#1a1d21</color>
+    <color name="colorAccent">#f7313a</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="lightPrimaryColor">#B3673AB7</color>
+    <color name="lightPrimaryColor">#B31d2126</color>
+    <color name="lightPrimaryDark">#B31a1d21</color>
+    <color name="tabBackground">#1e2226</color>
+    <color name="blackNe">#06000a</color>
+    <color name="blackNew">#0a0d0f</color>
+    <color name="nowPlaying">#0c0f11</color>
+    <color name="selectedText">#fff200</color>
+    <color name="albumTextView_2_color">#cccccc</color>
 </resources>

@@ -12,7 +12,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/albums"
         android:scaleType="fitCenter"
-        tools:srcCompat="@drawable/abgt" />
+        tools:srcCompat="@drawable/common_ground" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,8 +28,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/frag_album_text_size1"
             tools:text="Common Ground" />
 
@@ -37,10 +36,8 @@
             android:id="@+id/artistName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceListItemSecondary"
-            android:textColor="@color/black"
+            android:textColor="@color/albumTextView_2_color"
             android:textSize="@dimen/frag_album_text_size2"
             tools:text="Above &amp; Beyond" />
-
     </LinearLayout>
 </RelativeLayout>

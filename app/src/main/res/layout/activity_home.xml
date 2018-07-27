@@ -5,6 +5,7 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blackNew"
     android:fitsSystemWindows="true"
     tools:context=".ui.activities.HomeActivity">
 
@@ -30,11 +31,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/artists" />
-
-
         </android.support.design.widget.TabLayout>
-
     </android.support.v4.view.ViewPager>
-
-
 </RelativeLayout>

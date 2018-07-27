@@ -16,8 +16,11 @@ public class SampleContent {
     static {
 
         Artist aboveAndBeyond = new Artist("Above & Beyond", "above_and_beyond");
+        Artist andrewBayer = new Artist("Andrew Bayer", "andrew_bayer");
         Artist ilanBluestone = new Artist("Ilan Bluestone", "ilan_bluestone");
+        Artist kygo = new Artist("Kygo", "kygo_artist");
         Artist superEightAndTab = new Artist("Super8 & Tab", "super8_and_tab");
+        Artist yotto = new Artist("Yotto", "yotto_artist");
 
 
         Album commonGround = new Album("Common Ground", aboveAndBeyond, "common_ground");
@@ -34,6 +37,16 @@ public class SampleContent {
         commonGround.addSong(new Song("Bittersweet & Blue (feat. Richard Bedford)", 326));
         commonGround.addSong(new Song("Always (feat. Zoë Johnston)", 250));
         commonGround.addSong(new Song("Common Ground", 212));
+
+        Album inMyLastLife = new Album("In My Last Life", andrewBayer, "in_my_last_life");
+        inMyLastLife.addSong(new Song("Tidal Wave (feat. Alison May)", 497));
+        inMyLastLife.addSong(new Song("Love You More (feat. Ane Brun)", 358));
+        inMyLastLife.addSong(new Song("Open End Resource (feat. Alison May)", 353));
+        inMyLastLife.addSong(new Song("Hold on to You (feat. Ane Brun)", 318));
+        inMyLastLife.addSong(new Song("In My Last Life (feat. Alison May)", 405));
+        inMyLastLife.addSong(new Song("Immortal Lover (feat. Alison May)", 364));
+        inMyLastLife.addSong(new Song("Your Eyes (feat. Ane Brun)", 398));
+        inMyLastLife.addSong(new Song("End of All Things (feat. Alison May)", 586));
 
         Album scars = new Album("Scars", ilanBluestone, "scars_ilan");
         scars.addSong(new Song("Scars (feat. Giuseppe De Luca)", 295));
@@ -52,6 +65,17 @@ public class SampleContent {
         scars.addSong(new Song("Blue Angel", 359));
         scars.addSong(new Song("Eclipse", 230));
 
+        Album kidsInLove = new Album("Kids in Love (Re-release)", kygo, "kids_in_love");
+        kidsInLove.addSong(new Song("Never Let You Go (feat. John Newman)", 232));
+        kidsInLove.addSong(new Song("Sunrise (feat. Jason Walker)", 214));
+        kidsInLove.addSong(new Song("Riding Shotgun (with Oliver Nelson feat. Bonnie McKee)", 198));
+        kidsInLove.addSong(new Song("Stranger Things (feat. OneRepublic)", 221));
+        kidsInLove.addSong(new Song("With You (feat. Wrabel)", 210));
+        kidsInLove.addSong(new Song("Kids in Love (feat. The Night Game", 203));
+        kidsInLove.addSong(new Song("Permanent (feat. J.Hart", 228));
+        kidsInLove.addSong(new Song("I See You (feat. Billy Raffoul", 228));
+        kidsInLove.addSong(new Song("Remind Me to Forget (feat. Miguel", 216));
+
         Album empire = new Album("Empire (Bonus Track Version)", superEightAndTab, "empire_super8_tab");
         empire.addSong(new Song("Slow to Learn (feat. Jan Burton)", 410));
         empire.addSong(new Song("Empire (feat. Jan Burton)", 401));
@@ -66,14 +90,36 @@ public class SampleContent {
         empire.addSong(new Song("Free Love (feat. Jan Burton)", 245));
         empire.addSong(new Song("Helektra (Bonus Track)", 582));
 
+        Album hyperfall = new Album("Hyperfall", yotto, "hyperfall_yotto");
+        hyperfall.addSong(new Song("Hyperfall", 174));
+        hyperfall.addSong(new Song("The One You Left Behind (feat. Vok)", 329));
+        hyperfall.addSong(new Song("Kantsu", 298));
+        hyperfall.addSong(new Song("Nada C", 182));
+        hyperfall.addSong(new Song("Turn It Around", 272));
+        hyperfall.addSong(new Song("Epilogue (feat. CAPS)", 322));
+        hyperfall.addSong(new Song("Outsight", 284));
+        hyperfall.addSong(new Song("Odd One Out", 204));
+        hyperfall.addSong(new Song("Hyperlude", 113));
+        hyperfall.addSong(new Song("Radiate", 295));
+        hyperfall.addSong(new Song("Hear Me Out (feat. Sonin & Laudic)", 282));
+        hyperfall.addSong(new Song("Walls", 316));
+        hyperfall.addSong(new Song("Waiting Here", 103));
+
+
         aboveAndBeyond.addAlbum(commonGround);
+        andrewBayer.addAlbum(inMyLastLife);
         ilanBluestone.addAlbum(scars);
+        kygo.addAlbum(kidsInLove);
         superEightAndTab.addAlbum(empire);
+        yotto.addAlbum(hyperfall);
 
         for (int i = 1; i <= COUNT; i++) {
             addItem(commonGround, aboveAndBeyond);
+            addItem(inMyLastLife, andrewBayer);
             addItem(scars, ilanBluestone);
+            addItem(kidsInLove, kygo);
             addItem(empire, superEightAndTab);
+            addItem(hyperfall, yotto);
         }
     }
 

@@ -43,7 +43,7 @@ public class HomeActivity extends AppCompatActivity implements ArtistsFragment.O
         viewPager.setAdapter(homePageAdapter);
 
         tabLayout = findViewById(R.id.homePageTabs);
-        tabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        tabLayout.setBackgroundColor(getResources().getColor(R.color.tabBackground));
         tabLayout.setTabTextColors(getResources().getColor(R.color.white), getResources().getColor(R.color.colorAccent));
         tabLayout.setupWithViewPager(viewPager);
     }

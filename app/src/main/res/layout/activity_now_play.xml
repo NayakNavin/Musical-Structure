@@ -4,6 +4,7 @@
     android:id="@+id/activity_play"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blackNew"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -17,10 +18,10 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:adjustViewBounds="true"
-            android:alpha="0.75"
+            android:alpha="0.45"
             android:contentDescription="@string/backgroundImage"
             android:scaleType="centerCrop"
-            tools:src="@drawable/abgt" />
+            tools:src="@drawable/common_ground" />
 
         <ListView
             android:id="@+id/list"
@@ -29,7 +30,6 @@
             android:paddingBottom="@dimen/list_padding_8dp"
             android:paddingTop="@dimen/list_padding_8dp"
             tools:listitem="@layout/fragment_album" />
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -55,20 +55,22 @@
                     android:id="@+id/elapsedTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/timeZero" />
+                    android:text="@string/timeZero"
+                    android:textColor="@color/white" />
 
                 <SeekBar
                     android:id="@+id/seekBar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:progressBackgroundTintMode="@color/white" />
 
                 <TextView
                     android:id="@+id/remainingTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/timeZero" />
+                    android:text="@string/timeZero"
+                    android:textColor="@color/white" />
             </TableRow>
-
         </TableLayout>
 
         <ImageView
@@ -82,7 +84,7 @@
             android:layout_toLeftOf="@id/previousIcon"
             android:layout_toStartOf="@id/previousIcon"
             android:contentDescription="@string/replay"
-            android:src="@drawable/ic_replay" />
+            android:src="@drawable/ic_repeat" />
 
         <ImageView
             android:id="@+id/previousIcon"
@@ -95,7 +97,7 @@
             android:layout_toLeftOf="@id/playStopIcon"
             android:layout_toStartOf="@id/playStopIcon"
             android:contentDescription="@string/previous"
-            android:src="@drawable/ic_skip_previous" />
+            android:src="@drawable/ic_previous" />
 
         <ImageView
             android:id="@+id/playStopIcon"
@@ -105,7 +107,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_8dp"
             android:contentDescription="@string/play"
-            android:src="@drawable/ic_play_circle_filled" />
+            android:src="@drawable/ic_play" />
 
         <ImageView
             android:id="@+id/nextIcon"
@@ -118,7 +120,7 @@
             android:layout_toEndOf="@id/playStopIcon"
             android:layout_toRightOf="@id/playStopIcon"
             android:contentDescription="@string/next"
-            android:src="@drawable/ic_skip_next" />
+            android:src="@drawable/ic_next" />
 
         <ImageView
             android:id="@+id/shuffleIcon"
@@ -132,7 +134,5 @@
             android:layout_toRightOf="@id/nextIcon"
             android:contentDescription="@string/shuffle"
             android:src="@drawable/ic_shuffle" />
-
     </RelativeLayout>
-
 </LinearLayout>
