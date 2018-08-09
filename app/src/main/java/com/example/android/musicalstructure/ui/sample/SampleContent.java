@@ -14,7 +14,6 @@ public class SampleContent {
     private static final int COUNT = 1;
 
     static {
-
         Artist aboveAndBeyond = new Artist("Above & Beyond", "above_and_beyond");
         Artist andrewBayer = new Artist("Andrew Bayer", "andrew_bayer");
         Artist ilanBluestone = new Artist("Ilan Bluestone", "ilan_bluestone");

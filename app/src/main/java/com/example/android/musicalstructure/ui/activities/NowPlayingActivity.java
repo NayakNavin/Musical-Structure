@@ -63,6 +63,9 @@ public class NowPlayingActivity extends AppCompatActivity {
     private boolean isPlayingRepeat;
     private Random random;
     private MediaPlayer mediaPlayer;
+    Toast repeatTst;
+    Toast shuffleTst;
+    Toast conceptTst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,6 +222,7 @@ public class NowPlayingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isPlayingRepeat) {
                     replayImageView.setImageResource(R.drawable.ic_repeat);
+                    repeatTst.cancel();
                 } else {
                     replayImageView.setImageResource(R.drawable.ic_repeat_on);
                     repeatToast();
@@ -232,6 +236,7 @@ public class NowPlayingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isPlayingRandom) {
                     shuffleImageView.setImageResource(R.drawable.ic_shuffle);
+                    shuffleTst.cancel();
                 } else {
                     shuffleImageView.setImageResource(R.drawable.ic_shuffle_on);
                     shuffleToast();
@@ -256,6 +261,43 @@ public class NowPlayingActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cancelAllPendingToasts();
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        cancelAllPendingToasts();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        cancelAllPendingToasts();
+    }
+
+    /**
+     * Cancel all the pending toast
+     */
+    private void cancelAllPendingToasts() {
+        if (repeatTst != null) {
+            repeatTst.cancel();
+        }
+        if (shuffleTst != null) {
+            shuffleTst.cancel();
+        }
+        if (conceptTst != null) {
+            conceptTst.cancel();
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -263,16 +305,6 @@ public class NowPlayingActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
     }
 
     @Override
@@ -321,6 +353,7 @@ public class NowPlayingActivity extends AppCompatActivity {
                 // Update the seekBar
                 seekBar.setProgress(currentSong.getDuration() - (int) (millisUntilFinished / TIMER_INTERVAL));
             }
+
             public void onFinish() {
                 if (!isPlayingRepeat) {
                     nextSong();
@@ -359,10 +392,10 @@ public class NowPlayingActivity extends AppCompatActivity {
         if (currentSong.getMediaFile() != null) {
             resIdMedia = getResources().getIdentifier(currentSong.getMediaFile(), "raw", getPackageName());
         }
-        if (resIdMedia == 0) {
-            Toast.makeText(this, R.string.noFile, LENGTH_SHORT).show();
+        if (resIdMedia == 0 && conceptTst == null || !conceptTst.getView().isShown()) {
+            conceptTst = Toast.makeText(this, R.string.noFile, LENGTH_SHORT);
+            conceptTst.show();
         }
-
         countDownTimer.cancel();
 
         // initialization of the elapsed time of the current song
@@ -434,8 +467,10 @@ public class NowPlayingActivity extends AppCompatActivity {
             }
         }
         selectSong((Song) listListView.getItemAtPosition(currentPosition));
-        listListView.getChildAt(currentPosition - firstDisplayedPosition).setSelected(true);
-        listListView.smoothScrollToPosition(currentPosition + 1 - firstDisplayedPosition);
+        if (currentPosition <= listListView.getLastVisiblePosition()) {
+            listListView.getChildAt(currentPosition - firstDisplayedPosition).setSelected(true);
+            listListView.smoothScrollToPosition(currentPosition + 1 + firstDisplayedPosition);
+        }
     }
 
     /**
@@ -470,10 +505,16 @@ public class NowPlayingActivity extends AppCompatActivity {
     }
 
     private void repeatToast() {
-        Toast.makeText(this, R.string.repeatAlert, Toast.LENGTH_SHORT).show();
+        if (repeatTst == null || !repeatTst.getView().isShown()) {
+            repeatTst = Toast.makeText(this, R.string.repeatAlert, Toast.LENGTH_SHORT);
+            repeatTst.show();
+        }
     }
 
     private void shuffleToast() {
-        Toast.makeText(this, R.string.shuffleAlert, Toast.LENGTH_SHORT).show();
+        if (shuffleTst == null || !shuffleTst.getView().isShown()) {
+            shuffleTst = Toast.makeText(this, R.string.shuffleAlert, Toast.LENGTH_SHORT);
+            shuffleTst.show();
+        }
     }
 }
